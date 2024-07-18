@@ -1,0 +1,3 @@
+<app-employee-form [mode]="mode" [employeeModel]="employeeModel" (cancelEmployee)="cancel($event)" (submitEmployee)="submit($event)" />
+<app-employee-list [mode]="mode" (EmployeeUpdate)="updateEmployee($event)" (EmployeeAdd)="addEmployee($event)" />
+

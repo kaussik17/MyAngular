@@ -1,0 +1,106 @@
+
+<link
+  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+  rel="stylesheet"
+  integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+  crossorigin="anonymous"
+/>
+
+<div *ngIf="mode == 'Edit' || mode == 'Add'" class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="form-container">
+        <div  class="form-title">{{ mode  }} Employees</div>
+        <form name="employeeForm">
+          <div class="form-group">
+            <label for="txtName">Name</label>
+            <input
+              type="text"
+              class="form-control"
+              name="txtName"
+              placeholder="Enter your name"
+              [(ngModel)]="employeeModel.name"
+            />
+          </div>
+          <div class="form-group">
+            <label for="txtSalary">Salary</label>
+            <input
+              type="text"
+              class="form-control"
+              name="txtSalary"
+              placeholder="Enter your salary"
+              [(ngModel)]="employeeModel.salary"
+            />
+          </div>
+          <div class="form-group">
+            <label for="gender">Gender</label>
+            <div id="gender">
+              <div class="col-md-6 form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="gender"
+                  value="Male"
+                  [(ngModel)]="employeeModel.gender"
+                />
+                <label class="form-check-label" for="rbtnMale">Male</label>
+              </div>
+              <div class="col-md-6 form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="gender"
+                  value="Female"
+                  [(ngModel)]="employeeModel.gender"
+                />
+                <label class="form-check-label" for="rbtnFemale">Female</label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <!-- {{Hobbies | json}} -->
+            <label for="chkHobby">Hobby</label>
+            <div *ngFor="let h of Hobbies">
+              <input
+                type="checkbox"
+                [name]="h.name"
+                [value]="h.name"
+                [(ngModel)]="h.isSelected"
+              />
+              <label>{{h.name}}</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="txtDob">Date Of Birth</label>
+
+            <input
+              type="date"
+              class="form-control"
+              name="txtDob"
+              [ngModel]="employeeModel.dateOfBirth | date:'yyyy-MM-dd'" (ngModelChange)="employeeModel.dateOfBirth=$event"
+            />
+          </div>
+          <div class="form-group">
+            <label for="ddlDepartment"> Department </label>
+            <select
+              class="form-control"
+              name="ddlDepartment"
+              [(ngModel)]="employeeModel.departmentId"
+            >
+              <option *ngFor="let x of departments" [value]="x.id">
+                {{ x.name }}
+              </option>
+            </select>
+          </div>
+          <button type="submit" (click)="submit()" class="btn btn-custom">Submit</button>
+          <button type="button" (click)="cancel()"  class="btn btn-custom" >
+            Cancel
+          </button>
+        </form>
+
+        
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,33 @@
+<div class="container mt-4" *ngIf="mode == 'List'">
+    <h2 style="text-align: center;">Employee Details</h2>
+    <button class="btn btn-primary" style="margin-left: 900px;" (click)="add()" type="button">Add Employee</button>
+    <table class="table table-bordered table-striped mt-4" id="txtTable">
+        <thead class="thead-dark">
+            <tr>
+                <th>Name</th>
+                <th>Salary</th>
+                <th>Gender</th>
+                <th>Hobby</th>
+                <th>Date of Birth</th>
+                <th>Age</th>
+                <th>Department</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let employee of employees">
+                <td>{{ employee.name }}</td>
+                <td>{{ employee.salary }}</td>
+                <td>{{ employee.gender | gender }}</td>
+                <td>{{ employee.hobby }}</td>
+                <td>{{ employee.dateOfBirth | date: 'dd-MM-yyyy' }}</td>
+                <td>{{ employee.dateOfBirth | age: employee.gender }}</td>
+                <td>{{ employee.departmentName }}</td>
+                <td >
+                    <button class="dl btn btn-danger btn-sm me-2" (click)="delete(employee.id)">Delete</button>
+                    <button class="ud btn btn-info btn-sm" (click)="update(employee)">Update</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
